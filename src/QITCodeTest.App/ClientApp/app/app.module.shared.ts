@@ -31,7 +31,7 @@ import { AgePipe } from './components/students/age.pipe';
         FormsModule
     ],
     providers: [
-        { provide: 'WEBAPI_URL', useValue: 'http://localhost:50005/api' },
+        { provide: 'WEBAPI_URL', useValue: 'http://localhost:8081/api' },
         EmitterService,
         ClassService,
         StudentService

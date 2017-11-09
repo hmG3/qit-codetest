@@ -7,7 +7,7 @@
         {
             "name": "Host+Browser",
             "configurations": [
-                ".NET Core Launch App",
+                ".NET Core Launch (console)",
                 "Launch Chrome"
             ]
         }
@@ -17,7 +17,7 @@
             "type": "chrome",
             "request": "launch",
             "name": "Launch Chrome",
-            "url": "http://localhost:5000",
+            "url": "http://localhost:8080",
             "webRoot": "${workspaceRoot}/wwwroot",
             "sourceMaps": true,
             "sourceMapPathOverrides": {
@@ -25,7 +25,7 @@
             }
         },
         {
-            "name": ".NET Core Launch App",
+            "name": ".NET Core Launch (console)",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
