@@ -25,9 +25,12 @@ namespace QITCodeTest.Service.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("Location")
+                        .IsRequired();
+
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(80);
+                        .HasMaxLength(50);
 
                     b.Property<string>("Teacher")
                         .IsRequired()
@@ -47,15 +50,15 @@ namespace QITCodeTest.Service.Migrations
 
                     b.Property<DateTime>("DOB");
 
-                    b.Property<decimal?>("GPA");
+                    b.Property<double?>("GPA");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(80);
+                        .HasMaxLength(50);
 
                     b.Property<string>("Surname")
                         .IsRequired()
-                        .HasMaxLength(80);
+                        .HasMaxLength(50);
 
                     b.HasKey("Id");
 
