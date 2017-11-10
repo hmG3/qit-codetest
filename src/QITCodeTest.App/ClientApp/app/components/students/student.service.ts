@@ -22,15 +22,15 @@ export class StudentService {
     getStudentsOfClass(studentClassId: string): Observable<Array<Student>> {
         return this.http.get(`${this.studentsServiceUrl}/class/${studentClassId}`)
             .map((res: Response) => res.json())
-            .catch((error: any) => {
-                return Observable.throw(error.text() || 'Internal server error');
+            .catch((error: Response) => {
+                return Observable.throw(error.json().data || 'Internal server error');
             });
     }
 
     createStudent(entity: Student): Observable<boolean> {
         return this.http.post(this.studentsServiceUrl, entity, this.headers)
             .map((res: Response) => res.json())
-            .catch((error: any) => {
+            .catch((error: Response) => {
                 return Observable.throw(error.text() || 'Internal server error');
             });
     }
@@ -38,7 +38,7 @@ export class StudentService {
     editStudent(entity: Student): Observable<boolean> {
         return this.http.put(`${this.studentsServiceUrl}/${entity.id}`, entity, this.headers)
             .map((res: Response) => res.ok)
-            .catch((error: any) => {
+            .catch((error: Response) => {
                 return Observable.throw(error.text() || 'Internal server error');
             });
     }
@@ -46,7 +46,7 @@ export class StudentService {
     removeStudent(entity: Student): Observable<boolean> {
         return this.http.delete(`${this.studentsServiceUrl}/${entity.id}`, this.headers)
             .map((res: Response) => res.ok)
-            .catch((error: any) => {
+            .catch((error: Response) => {
                 return Observable.throw(error.text() || 'Internal server error');
             });
     }

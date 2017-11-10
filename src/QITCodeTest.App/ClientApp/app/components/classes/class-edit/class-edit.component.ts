@@ -1,20 +1,20 @@
 import { Component, Input, ViewChild } from '@angular/core';
 
 import { Class } from '../class.model';
-import { EmitterService } from '../../../services/emitter.service';
+import { ModalComponent } from '../../shared/form-modal/form-modal.component';
 import { ClassService } from '../class.service';
-import { ModalComponent } from '../../shared/form-modal.component';
+import { EmitterService } from '../../../services/emitter.service';
 
 @Component({
     selector: 'app-class-edit',
-    templateUrl: './class-edit.component.html',
-    styleUrls: ['./class-edit.component.css']
+    templateUrl: './class-edit.component.html'
 })
 export class ClassEditComponent {
     @Input() private classListId: string;
     @Input() private model: Class;
     @Input() private formTitle: string;
     @ViewChild(ModalComponent) private modalDialog: ModalComponent;
+
     private errorMessage: string;
 
     constructor(private readonly classService: ClassService) { }

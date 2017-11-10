@@ -1,9 +1,9 @@
-import { Component, Input, OnInit, OnChanges, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild, OnInit, OnChanges  } from '@angular/core';
 
 import { Class } from '../class.model';
-import { EmitterService } from '../../../services/emitter.service';
-import { ClassService } from '../class.service';
 import { ClassEditComponent } from '../class-edit/class-edit.component';
+import { ClassService } from '../class.service';
+import { EmitterService } from '../../../services/emitter.service';
 
 @Component({
     selector: 'app-class-list',
@@ -12,20 +12,18 @@ import { ClassEditComponent } from '../class-edit/class-edit.component';
 })
 export class ClassListComponent implements OnInit, OnChanges {
     @Input() private schoolAppId: string;
-    @Input() private classListId: string;
+    @Input() private readonly classListId: string;
     @ViewChild(ClassEditComponent) private editFormComponent: ClassEditComponent;
 
     private availableClasses: Array<Class>;
-
     private editActionFormTitle: string;
     private editableClass: Class;
     private selectedRowIndex: number;
-
-    private hasErrors: boolean;
+    private errorMessage: string;
 
     constructor(private readonly classService: ClassService) {
         this.classListId = 'CLASSES_COMPONENT_LIST_EVENT';
-     }
+    }
 
     ngOnInit() {
         this.loadAvailableClasses();
@@ -39,7 +37,7 @@ export class ClassListComponent implements OnInit, OnChanges {
         this.classService.getClasses().subscribe(classes =>
             this.availableClasses = classes,
             error => {
-                this.hasErrors = true;
+                this.errorMessage = error;;
                 console.log(error);
             });
     }
@@ -60,13 +58,13 @@ export class ClassListComponent implements OnInit, OnChanges {
         this.classService.removeClass(classToDelete).subscribe(
             () => EmitterService.get(this.classListId).emit(),
             error => {
-                this.hasErrors = true;
+                this.errorMessage = error;
                 console.log(error);
             });
     }
 
     loadStudents(selectedRowIndex: number, selectedClass: Class) {
         this.selectedRowIndex = selectedRowIndex;
-        EmitterService.get(this.schoolAppId).emit(selectedClass.id);
+        EmitterService.get(this.schoolAppId).emit(selectedClass);
     }
 }

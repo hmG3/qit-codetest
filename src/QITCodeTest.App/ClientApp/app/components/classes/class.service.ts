@@ -22,17 +22,17 @@ export class ClassService {
     getClasses(): Observable<Array<Class>> {
         return this.http.get(this.classesServiceUrl)
             .map((res: Response) => res.json())
-            .catch((error: any) => {
-                return Observable.throw(error.text() || 'Internal server error');
+            .catch((error: Response) => {
+                return Observable.throw(error.json().data || 'Internal server error');
             });
     }
 
     createClass(entity: Class): Observable<boolean> {
         return this.http.post(this.classesServiceUrl, entity, this.headers)
-        .map((res: Response) => res.ok)
-        .catch((error: any) => {
-            return Observable.throw(error.text() || 'Internal server error');
-        });
+            .map((res: Response) => res.ok)
+            .catch((error: Response) => {
+                return Observable.throw(error.text() || 'Internal server error');
+            });
     }
 
     editClass(entity: Class): Observable<boolean> {
@@ -46,7 +46,7 @@ export class ClassService {
     removeClass(entity: Class): Observable<boolean> {
         return this.http.delete(`${this.classesServiceUrl}/${entity.id}`, this.headers)
             .map((res: Response) => res.ok)
-            .catch((error: any) => {
+            .catch((error: Response) => {
                 return Observable.throw(error.text() || 'Internal server error');
             });
     }

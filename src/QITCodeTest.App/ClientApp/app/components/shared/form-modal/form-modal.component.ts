@@ -6,12 +6,10 @@ import { Component, Output, EventEmitter } from '@angular/core';
     styleUrls: ['./form-modal.component.css']
 })
 export class ModalComponent {
-    private showModal: boolean;
-
-    @Output() closeEmitter: EventEmitter<ModalResult> = new EventEmitter<ModalResult>();
+    @Output() closeEmitter = new EventEmitter<ModalResult>();
     @Output() positiveLabelAction = new EventEmitter();
 
-    constructor() { }
+    private showModal: boolean;
 
     show() {
         this.showModal = true;

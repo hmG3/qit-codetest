@@ -1,11 +1,10 @@
-<div *ngIf="hasErrors" class="alert alert-danger">
-    {{message}}
+<div *ngIf="errorMessage" class="alert alert-danger">
+    {{ errorMessage }}
 </div>
-
-<div class="container-fluid" *ngIf="availableStudents">
+<div class="container-fluid my-3" *ngIf="availableStudents">
     <div class="row">
         <div class="col-2">
-            <h3>Classes</h3>
+            <h4>{{ selectedClass.name }}</h4>
         </div>
     </div>
     <div class="row no-gutters">

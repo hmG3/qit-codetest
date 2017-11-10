@@ -1,9 +1,9 @@
 import { Component, Input, ViewChild } from '@angular/core';
 
 import { Student } from '../student.model';
-import { EmitterService } from '../../../services/emitter.service';
+import { ModalComponent } from '../../shared/form-modal/form-modal.component';
 import { StudentService } from '../student.service';
-import { ModalComponent } from '../../shared/form-modal.component';
+import { EmitterService } from '../../../services/emitter.service';
 
 @Component({
     selector: 'app-student-edit',
@@ -42,5 +42,9 @@ export class StudentEditComponent {
             this.errorMessage = error;
             console.log(error);
         });
+    }
+
+    private parseDate(dateString: string): Date | null {
+        return dateString ? new Date(dateString) : null;
     }
 }

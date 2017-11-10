@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({ name: 'age' })
 export class AgePipe implements PipeTransform {
-    transform(value: string, args: string[]): any {
+    transform(value: string): any {
         if (!value) {
             return value;
         }
